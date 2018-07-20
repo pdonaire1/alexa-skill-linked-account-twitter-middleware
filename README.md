@@ -11,6 +11,25 @@ this is a simple nodejs + express middleware is configured to work on heroku.
 notes:
 - do not forget to define env variables on heroku dashboard
 
+# Steps to configure:
+1. enter to twitter and create an app: https://apps.twitter.com/
+2. clone the repo from https://github.com/eercanayar/alexa-skill-linked-account-twitter-middleware.git
+3. deploy to heroku https://devcenter.heroku.com/articles/getting-started-with-nodejs#prepare-the-app
+3.1. set the heroku enviroment variables
+```
+heroku config:set CALLBACK_URL=https://myherokuapp.herokuapp.com/oauth/callback \
+  CONSUMER_KEY=MyKeyProvidedByTwitter \
+  CONSUMER_SECRET=MySecretProvidedByTwitter \
+  SESS_SECRET=MySecretSession
+```
+#4. Go to alexa skill
+#4.1 Go to the skill and click on account linking
+#4.1.1 select implicit grant and set the values:
+set the Authorization URI to https://myheroku.com/oauth/request_token
+Access Token URI: 
+Client ID: myazymo_sess_secret
+
+
 alexa skill functions compatible with this middleware:
 - nodejs: [*eercanayar/alexa-skill-linked-account-twitter-nodejs*](https://github.com/eercanayar/alexa-skill-linked-account-twitter-nodejs)
 - netcore10: [*eercanayar/alexa-skill-linked-account-twitter-dotnet-core*](https://github.com/eercanayar/alexa-skill-linked-account-twitter-dotnet-core)
