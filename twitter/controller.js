@@ -33,16 +33,16 @@ class TwitterController  {
     callback(req, res) {
         var sess = req.session;
         
-        requestToken = sess.request_token;
-        requestTokenSecret = sess.request_token_secret;
-        oauth_verifier =  req.query.oauth_verifier;
+        var requestToken = sess.request_token;
+        var requestTokenSecret = sess.request_token_secret;
+        var oauth_verifier =  req.query.oauth_verifier;
         
         twitter.getAccessToken(requestToken, requestTokenSecret, oauth_verifier, function(error, accessToken, accessTokenSecret, results) {
             if (error) {
                 console.log(error);
             } else {
     
-                params = {};
+                var params = {};
                 twitter.verifyCredentials(accessToken, accessTokenSecret, params, function(error, data, response) {
                 if (error) {
                     console.log("Error while verifying.");
